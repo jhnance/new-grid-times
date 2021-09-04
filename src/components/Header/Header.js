@@ -29,7 +29,19 @@ const Header = () => {
         </Row>
       </SuperHeader>
       <MainHeader>
+        <DesktopActionGroup>
+          <button>
+            <Search size={24} />
+          </button>
+          <button>
+            <Menu size={24} />
+          </button>
+        </DesktopActionGroup>
         <Logo />
+        <SubscriberCallToAction>
+          <Button>Subscribe</Button>
+          <SubscriberLink>Already a subscriber?</SubscriberLink>
+        </SubscriberCallToAction>
       </MainHeader>
     </header>
   );
@@ -39,6 +51,10 @@ const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -59,12 +75,54 @@ const ActionGroup = styled.div`
   }
 `;
 
+const DesktopActionGroup = styled(ActionGroup)`
+  display: none;
+  justify-self: start;
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
+`;
+
 const MainHeader = styled(MaxWidthWrapper)`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.tabletAndUp} {
+    margin-top: 48px;
+    margin-bottom: 72px;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto 1fr;
+    margin-top: 16px;
+    margin-bottom: 72px;
+  }
+`;
+
+const SubscriberCallToAction = styled.div`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: revert;
+    position: relative;
+    justify-self: end;
+  }
+`;
+
+const SubscriberLink = styled.a`
+  cursor: pointer;
+  position: absolute;
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+  font-size: ${14 / 16}rem;
+  font-style: italic;
+  text-decoration: underline;
 `;
 
 export default Header;

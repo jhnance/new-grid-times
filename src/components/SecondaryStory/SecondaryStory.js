@@ -1,17 +1,32 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { COLORS, QUERIES } from '../../constants';
 
 const SecondaryStory = ({ id, title, image, location, abstract }) => {
   return (
-    <a href={`/story/${id}`}>
-      <Wrapper>
-        <Image alt={image.alt} src={image.src} />
-        <Heading>{title}</Heading>
-        <Abstract>{abstract}</Abstract>
-      </Wrapper>
-    </a>
+    <BorderedStory>
+      <a href={`/story/${id}`}>
+        <Wrapper>
+          <Image alt={image.alt} src={image.src} />
+          <Heading>{title}</Heading>
+          <Abstract>{abstract}</Abstract>
+        </Wrapper>
+      </a>
+    </BorderedStory>
   );
 };
+
+const BorderedStory = styled.div`
+  padding: 16px 0;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid ${COLORS.gray['300']};
+  }
+
+  @media ${QUERIES.tabletOnly} {
+    border-bottom: none;
+  }
+`;
 
 const Wrapper = styled.article`
   display: grid;

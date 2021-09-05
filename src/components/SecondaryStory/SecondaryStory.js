@@ -57,6 +57,7 @@ const Heading = styled.h2`
 `;
 
 const Abstract = styled.p`
+  align-self: start;
   grid-area: abstract;
   font-size: 1rem;
   white-space: pre-wrap;

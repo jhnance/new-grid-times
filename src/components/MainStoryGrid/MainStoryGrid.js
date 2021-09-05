@@ -19,8 +19,10 @@ const MainStoryGrid = () => {
 
       <SecondaryStorySection>
         <StoryList>
-          {SECONDARY_STORIES.map((story, index) => (
-            <SecondaryStory key={story.id} {...story} />
+          {SECONDARY_STORIES.map((story) => (
+            <BorderedStory key={story.id}>
+              <SecondaryStory {...story} />
+            </BorderedStory>
           ))}
         </StoryList>
       </SecondaryStorySection>
@@ -28,8 +30,10 @@ const MainStoryGrid = () => {
       <OpinionSection>
         <SectionTitle>Opinion</SectionTitle>
         <StoryList>
-          {OPINION_STORIES.map((story, index) => (
-            <OpinionStory key={story.id} {...story} />
+          {OPINION_STORIES.map((story) => (
+            <BorderedStory tabletBorder={false} key={story.id}>
+              <OpinionStory {...story} />
+            </BorderedStory>
           ))}
         </StoryList>
       </OpinionSection>
@@ -40,6 +44,22 @@ const MainStoryGrid = () => {
     </Wrapper>
   );
 };
+
+const BorderedStory = styled.div`
+  padding: 16px 0;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid ${COLORS.gray['300']};
+  }
+
+  ${(props) =>
+    props.tabletBorder === false &&
+    `@media ${QUERIES.tabletOnly} {
+      &:not(:last-of-type) {
+        border-bottom: none;
+      }
+    }`}
+`;
 
 const Wrapper = styled.div`
   display: grid;

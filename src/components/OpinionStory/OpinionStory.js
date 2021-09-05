@@ -4,17 +4,15 @@ import { COLORS, QUERIES } from '../../constants';
 
 const OpinionStory = ({ id, title, author, avatar }) => {
   return (
-    <BorderedStory>
-      <a href={`/story/${id}`}>
-        <Wrapper>
-          <Avatar alt="" src={avatar} />
-          <div>
-            <AuthorName>{author}</AuthorName>
-            <ArticleTitle>{title}</ArticleTitle>
-          </div>
-        </Wrapper>
-      </a>
-    </BorderedStory>
+    <a href={`/story/${id}`}>
+      <Wrapper>
+        <Avatar alt="" src={avatar} />
+        <div>
+          <AuthorName>{author}</AuthorName>
+          <ArticleTitle>{title}</ArticleTitle>
+        </div>
+      </Wrapper>
+    </a>
   );
 };
 
@@ -30,20 +28,6 @@ const Wrapper = styled.article`
 
   @media ${QUERIES.laptopAndUp} {
     display: grid;
-  }
-`;
-
-const BorderedStory = styled.div`
-  padding: 16px 0;
-
-  &:not(:last-of-type) {
-    border-bottom: 1px solid ${COLORS.gray['300']};
-  }
-
-  @media ${QUERIES.tabletOnly} {
-    &:not(:last-of-type) {
-      border-bottom: none;
-    }
   }
 `;
 

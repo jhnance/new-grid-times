@@ -46,10 +46,10 @@ const MainStoryGrid = () => {
 };
 
 const BorderedStory = styled.div`
-  padding: 16px 0;
-
   &:not(:last-of-type) {
     border-bottom: 1px solid ${COLORS.gray['300']};
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 
   ${(props) =>
@@ -57,27 +57,59 @@ const BorderedStory = styled.div`
     `@media ${QUERIES.tabletOnly} {
       &:not(:last-of-type) {
         border-bottom: none;
+        padding-bottom: none;
+        margin-bottom: none;
       }
     }`}
 `;
 
 const Wrapper = styled.div`
   display: grid;
+  gap: 48px;
+  margin-bottom: 48px;
+
   grid-template-areas:
     'main-story'
     'secondary-stories'
     'opinion-stories'
     'advertisement';
-  gap: 48px;
-  margin-bottom: 48px;
+
+  @media ${QUERIES.tabletAndUp} {
+    grid-template-areas:
+      'main-story secondary-stories'
+      'advertisement advertisement'
+      'opinion-stories opinion-stories';
+    grid-template-columns: 2fr 1fr;
+    gap: 48px 0;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    grid-template-areas:
+      'main-story secondary-stories opinion-stories'
+      'main-story advertisement advertisement';
+
+    grid-template-columns: 4fr 3fr 2fr;
+    gap: ${18 / 16}rem;
+  }
 `;
 
 const MainStorySection = styled.section`
   grid-area: main-story;
+
+  @media ${QUERIES.tabletAndUp} {
+    border-right: 1px solid ${COLORS.gray['300']};
+    padding-right: 1rem;
+    margin-right: 1rem;
+  }
 `;
 
 const SecondaryStorySection = styled.section`
   grid-area: secondary-stories;
+
+  @media ${QUERIES.laptopAndUp} {
+    border-right: 1px solid ${COLORS.gray['300']};
+    padding-right: 1rem;
+  }
 `;
 
 const OpinionSection = styled.section`
@@ -91,12 +123,22 @@ const StoryList = styled.div`
   ${OpinionSection} & {
     @media ${QUERIES.tabletOnly} {
       flex-direction: revert;
+      gap: 2rem;
+
+      & ${BorderedStory} {
+        flex: 1;
+      }
     }
   }
 `;
 
 const AdvertisementSection = styled.section`
   grid-area: advertisement;
+
+  @media ${QUERIES.laptopAndUp} {
+    padding-top: 1rem;
+    border-top: 1px solid ${COLORS.gray['300']};
+  }
 `;
 
 export default MainStoryGrid;

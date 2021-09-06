@@ -38,6 +38,11 @@ const Avatar = styled.img`
   border-radius: 50%;
   object-fit: cover;
   grid-area: opinion-author-avatar;
+  margin-left: 8px;
+
+  @media ${QUERIES.tabletOnly} {
+    margin-left: 0;
+  }
 `;
 
 const AuthorName = styled.p`

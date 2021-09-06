@@ -2,14 +2,14 @@ import React from 'react';
 
 import styled from 'styled-components/macro';
 
+import { QUERIES } from '../../constants';
+
 const SectionTitle = ({ children, cornerLink }) => {
   return (
     <Wrapper>
       <Title>{children}</Title>
       {cornerLink && (
-        <CornerLink href={cornerLink.href}>
-          {cornerLink.content}
-        </CornerLink>
+        <CornerLink href={cornerLink.href}>{cornerLink.content}</CornerLink>
       )}
     </Wrapper>
   );
@@ -26,6 +26,10 @@ const Title = styled.h2`
   font-weight: var(--font-weight-bold);
   font-size: 1.5rem;
   margin-bottom: 1rem;
+
+  @media ${QUERIES.laptopAndUp} {
+    line-height: 1.125rem;
+  }
 `;
 
 const CornerLink = styled.a`
